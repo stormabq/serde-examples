@@ -1,12 +1,12 @@
 use serde::{Deserialize, Serialize};
-use serde_json::value::Value;
+//use serde_json::value::Value;
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]
 pub struct Hna {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub by: Option<String>,
-    pub title: Option<String>,
-    pub url: Option<String>,
+    pub by: String,
+    pub title: String,
+    pub url: String,
 }
 
 /// Builder for the `Hn` object.
@@ -18,7 +18,7 @@ pub struct HnaBuilder {
 }
 
 impl HnaBuilder {
-    pub fn new<S: Into<String>>(space_name: S) -> HnaBuilder {
+    pub fn new<S: Into<String>>() -> HnaBuilder {
         HnaBuilder {
             ..Default::default()
         }

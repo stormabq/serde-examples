@@ -2,6 +2,7 @@ pub mod hna;
 pub mod sensors;
 mod status;
 pub use crate::status::*;
+pub use crate::hna::*;
 
 /// Return own crate version. Used in API responses.
 pub fn get_version() -> &'static str {
