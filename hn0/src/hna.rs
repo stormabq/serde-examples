@@ -4,28 +4,33 @@ use serde_json::value::Value;
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]
 pub struct Hna {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub address: Option<String>,
-    pub address: Option<String>,
+    pub by: Option<String>,
+    pub title: Option<String>,
+    pub url: Option<String>,
 }
 
 /// Builder for the `Hn` object.
 #[derive(Default, Debug, Clone)]
-pub struct StatusBuilder {
-    space: String,
-    logo: Option<String>,
+pub struct HnaBuilder {
+    by: Option<String>,
+    title: Option<String>,
     url: Option<String>,
 }
 
-impl StatusBuilder {
-    pub fn new<S: Into<String>>(space_name: S) -> StatusBuilder {
-        StatusBuilder {
-            space: space_name.into(),
+impl HnaBuilder {
+    pub fn new<S: Into<String>>(space_name: S) -> HnaBuilder {
+        HnaBuilder {
             ..Default::default()
         }
     }
 
-    pub fn logo<S: Into<String>>(mut self, logo: S) -> Self {
-        self.logo = Some(logo.into());
+    pub fn by<S: Into<String>>(mut self, by: S) -> Self {
+        self.by = Some(by.into());
+        self
+    }
+
+    pub fn title<S: Into<String>>(mut self, title: S) -> Self {
+        self.title = Some(title.into());
         self
     }
 
@@ -36,9 +41,8 @@ impl StatusBuilder {
 
     pub fn build(self) -> Result<Hna, String> {
         Ok(Hna {
-            api: "0.13".into(), // TODO: Deduplicate
-            space: self.space,
-            logo: self.logo.ok_or("logo missing")?,
+            title: self.title.ok_or("title missing")?,
+            by: self.by.ok_or("by missing")?,
             url: self.url.ok_or("url missing")?,
             ..Default::default()
         })

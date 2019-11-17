@@ -10,7 +10,7 @@ fn main() {
 
 // let input = r#"{"by":"dhouston","id":8863,"score":104,"time":1175714200,"title":"My YC app: Dropbox - Throw away your USB drive","type":"story","url":"http://www.getdropbox.com/u/2/screencast.html"}"#;
 
-    let input = r#"{"by":"dbhouston","title":"My Title"}"
+    let input = r#"{"by":"dbhouston","title":"My Title","url":"http://www.zrato.com"}"
 
     let hna: Result<Hna, _> = from_str(input);
     match hna {
