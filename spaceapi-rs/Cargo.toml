@@ -1,0 +1,28 @@
+[package]
+name = "spaceapi"
+version = "0.7.0"
+repository = "https://github.com/spaceapi-community/spaceapi-rs/"
+license = "MIT OR Apache-2.0"
+authors = [
+    "Raphael Nestler <raphael.nestler@gmail.com>",
+    "Danilo Bargen <mail@dbrgn.ch>",
+    "Stefan Schindler <stefan@estada.ch>",
+]
+description = "SpaceAPI types and serialization/deserialization."
+readme = "README.md"
+keywords = ["spaceapi", "hackerspaces", "status", "api"]
+categories = ["api-bindings"]
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "README.md",
+    "LICENSE-MIT",
+    "LICENSE-APACHE",
+    "AUTHORS.md",
+]
+edition = "2018"
+
+[dependencies]
+log = "^0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "^1.0"
