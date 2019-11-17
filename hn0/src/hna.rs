@@ -3,7 +3,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]
 pub struct Hna {
-    #[serde(skip_serializing_if = "Option::is_none")]
     pub by: String,
     pub title: String,
     pub url: String,
