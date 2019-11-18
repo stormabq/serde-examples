@@ -4,20 +4,26 @@ use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Default, Debug, Clone, PartialEq)]
 pub struct Hna {
     pub by: String,
-    pub title: String,
-    pub url: String,
+    pub descendants: i32,
     pub id: i32,
     pub score: i32,
+    pub time: i32,
+    pub title: String,
+    pub r#type: String,
+    pub url: String,
 }
 
 /// Builder for the `Hn` object.
 #[derive(Default, Debug, Clone)]
 pub struct HnaBuilder {
     by: Option<String>,
-    title: Option<String>,
-    url: Option<String>,
+    descendants: Option<i32>,
     id: Option<i32>,
     score: Option<i32>,
+    time: Option<i32>,
+    title: Option<String>,
+    r#type: Option<String>,
+    url: Option<String>,
 }
 
 impl HnaBuilder {
@@ -32,13 +38,8 @@ impl HnaBuilder {
         self
     }
 
-    pub fn title<S: Into<String>>(mut self, title: S) -> Self {
-        self.title = Some(title.into());
-        self
-    }
-
-    pub fn url<S: Into<String>>(mut self, url: S) -> Self {
-        self.url = Some(url.into());
+    pub fn descendants<S: Into<i32>>(mut self, descendents: S) -> Self {
+        self.id = Some(descendents.into());
         self
     }
 
@@ -52,13 +53,36 @@ impl HnaBuilder {
         self
     }
 
+    pub fn time<S: Into<i32>>(mut self, time: S) -> Self {
+        self.time = Some(time.into());
+        self
+    }
+
+    pub fn title<S: Into<String>>(mut self, title: S) -> Self {
+        self.title = Some(title.into());
+        self
+    }
+
+    pub fn r#type<S: Into<String>>(mut self, r#type: S) -> Self {
+        self.r#type = Some(r#type.into());
+        self
+    }
+
+    pub fn url<S: Into<String>>(mut self, url: S) -> Self {
+        self.url = Some(url.into());
+        self
+    }
+
     pub fn build(self) -> Result<Hna, String> {
         Ok(Hna {
-            title: self.title.ok_or("title missing")?,
             by: self.by.ok_or("by missing")?,
-            url: self.url.ok_or("url missing")?,
+            descendants: self.descendants.ok_or("by missing")?,
             id: self.id.ok_or("id missing")?,
             score: self.score.ok_or("score missing")?,
+            time: self.time.ok_or("time missing")?,
+            title: self.title.ok_or("title missing")?,
+            r#type: self.r#type.ok_or("type missing")?,
+            url: self.url.ok_or("url missing")?,
             ..Default::default()
         })
     }
