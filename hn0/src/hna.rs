@@ -6,6 +6,7 @@ pub struct Hna {
     pub by: String,
     pub descendants: i32,
     pub id: i32,
+    pub kids: Vec<i32>,
     pub score: i32,
     pub time: i32,
     pub title: String,
@@ -19,6 +20,7 @@ pub struct HnaBuilder {
     by: Option<String>,
     descendants: Option<i32>,
     id: Option<i32>,
+    kids: Option<Vec<i32>>,
     score: Option<i32>,
     time: Option<i32>,
     title: Option<String>,
@@ -45,6 +47,11 @@ impl HnaBuilder {
 
     pub fn id<S: Into<i32>>(mut self, id: S) -> Self {
         self.id = Some(id.into());
+        self
+    }
+
+    pub fn kids<S: Into<Vec<i32>>>(mut self, kids: S) -> Self {
+        self.kids = Some(kids.into());
         self
     }
 
@@ -78,6 +85,7 @@ impl HnaBuilder {
             by: self.by.ok_or("by missing")?,
             descendants: self.descendants.ok_or("by missing")?,
             id: self.id.ok_or("id missing")?,
+            kids: self.kids.ok_or("kids missing")?,
             score: self.score.ok_or("score missing")?,
             time: self.time.ok_or("time missing")?,
             title: self.title.ok_or("title missing")?,
