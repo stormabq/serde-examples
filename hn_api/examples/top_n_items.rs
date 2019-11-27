@@ -1,18 +1,14 @@
 use hn_api::HnClient;
 
 fn top_n_items(numofitems: u32, max_number: u32) -> Vec<u32> {
-    let items = vec![max_number];
-
     let mut items = Vec::new();
-
     items.push(max_number);
+    let mut value = max_number;
 
-    /*
-        let myary = [numofitems: u32];
-        let value = max_number - 1;
-        myary.push(value);
-        myary
-    */
+    for _ in 1..numofitems {
+        value = value - 1;
+        items.push(value);
+    }
     items
 }
 
