@@ -6,14 +6,21 @@ fn print(api: &HnClient, items: &[u32]) {
 
         println!("{} {}", id, item.id());
 
-        println!("- {}: {}", item.id(), item.title().unwrap_or("?"),)
+        // println!("- {}: {}", item.id(), item.title().unwrap_or("?"),)
     }
 }
 
 fn main() {
     let api = HnClient::init().unwrap();
 
-    let top = api.get_top_stories().unwrap();
+    // This is the call that returns a
+    // working array
+    // let top = api.get_top_stories().unwrap();
+
+    // This works
+    let top = [21655958, 21656551, 21656190];
+    // This breaks
+    // let top = [21655958,21656551,21654193];
 
     let count = 3;
 
