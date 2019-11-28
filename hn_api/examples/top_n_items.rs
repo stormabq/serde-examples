@@ -1,5 +1,15 @@
 use hn_api::HnClient;
 
+fn process_items(item_ids: Vec<u32>) {
+    for item in item_ids.iter() {
+        println!("{}", item);
+    }
+
+    for item in &item_ids {
+        println!("{}", item);
+    }
+}
+
 fn top_n_items(numofitems: u32, max_number: u32) -> Vec<u32> {
     let mut items = Vec::new();
     items.push(max_number);
@@ -19,8 +29,5 @@ fn main() {
     println!("max item id = {}", max_item_id);
 
     let item_ids = top_n_items(5, max_item_id);
-
-    for i in &item_ids {
-        println!("{}", i);
-    }
+    process_items(item_ids);
 }
