@@ -1,12 +1,9 @@
 use hn_api::HnClient;
 
-fn process_items(item_ids: Vec<u32>) {
-    for item in item_ids.iter() {
-        println!("{}", item);
-    }
-
-    for item in &item_ids {
-        println!("{}", item);
+fn process_items(api: &HnClient, item_ids: Vec<u32>) {
+    for item_id in &item_ids {
+        let item = api.get_item(*item_id).unwrap().unwrap();
+        println!("{} {}", item_id, item.item_type());
     }
 }
 
@@ -28,6 +25,6 @@ fn main() {
     let max_item_id = api.get_max_item_id().unwrap();
     println!("max item id = {}", max_item_id);
 
-    let item_ids = top_n_items(5, max_item_id);
-    process_items(item_ids);
+    let item_ids = top_n_items(3, max_item_id);
+    process_items(&api, item_ids);
 }
