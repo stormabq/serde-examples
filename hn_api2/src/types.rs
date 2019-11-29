@@ -17,6 +17,8 @@ pub enum Item {
     Poll(Poll),
     /// A poll option belonging to a poll.
     Pollopt(Pollopt),
+    /// A deleted Story or Comment
+    Deleted(Deleted),
 }
 
 impl Item {
@@ -28,6 +30,7 @@ impl Item {
             Item::Job(job) => job.id,
             Item::Poll(poll) => poll.id,
             Item::Pollopt(pollopt) => pollopt.id,
+            Item::Deleted(deleted) => deleted.id,
         }
     }
 
@@ -39,6 +42,7 @@ impl Item {
             Item::Job(_job) => "job".to_string(),
             Item::Poll(_poll) => "poll".to_string(),
             Item::Pollopt(_pollopt) => "pollopt".to_string(),
+            Item::Deleted(_deleted) => "deleted".to_string(),
         }
     }
 
@@ -178,6 +182,22 @@ pub struct User {
     /// List of the user's stories, polls and comments.
     pub submitted: Vec<u32>,
 }
+
+/// A deleted item.
+#[derive(Debug, Deserialize)]
+pub struct Deleted {
+    /// By default it is deleted
+    pub deleted: bool,
+    /// The item's unique id.
+    pub id: u32,
+    /// Creation date of the user, in Unix Time.
+    pub time: u64,
+    /// parent.
+    pub parent: Option<String>,
+    /// type
+    pub r#type: String,
+}
+
 
 /// A list of recently updated items and users.
 #[derive(Debug, Deserialize)]
