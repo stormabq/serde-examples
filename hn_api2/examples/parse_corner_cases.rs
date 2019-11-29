@@ -2,26 +2,23 @@ use hn_api::HnClient;
 
 fn print(api: &HnClient, items: &[u32]) {
     for id in items {
-
-        // let item = api.get_item(*id).unwrap().unwrap();
+        let _item = api.get_item(*id).unwrap().unwrap();
 
         // let item = api.get_item(*id).to_string();
 
-        let item = api.get_item(*id).unwrap().to_string();
-        println!("{}",item);
+        // let item = api.get_item(*id).unwrap().to_string();
+        // println!("{}",item);
 
-/*
-        let _err = match item {
-                Some(item) => {
-                    println!("Good to go")
-                },
-                None => {
-                    println!("Got error")
-                },
-            };
-*/
-
-
+        /*
+                let _err = match item {
+                        Some(item) => {
+                            println!("Good to go")
+                        },
+                        None => {
+                            println!("Got error")
+                        },
+                    };
+        */
 
         // println!("{} {}", id, item.id());
 
@@ -34,12 +31,12 @@ fn main() {
 
     // This is the call that returns a
     // working array
-    // let top = api.get_top_stories().unwrap();
+    //let top = api.get_top_stories().unwrap();
 
     // This works
     // let top = [21655958, 21656551, 21656190];
     // This breaks
-    let top = [21655958,21656551,21654193];
+    let top = [21654193, 21655958, 21656551];
 
     let count = 3;
 
