@@ -2,6 +2,7 @@ use hn_api::HnClient;
 
 fn print(api: &HnClient, items: &[u32]) {
     for id in items {
+        println!("id = {}",id);
         let _item = api.get_item(*id).unwrap().unwrap();
 
         // let item = api.get_item(*id).to_string();
@@ -36,10 +37,17 @@ fn main() {
     // This works
     // let top = [21655958, 21656551, 21656190];
     // This breaks
-    let top = [21654193, 21655958, 21656551];
+    // let top = [21654193, 21655958, 21656551];
 
-    let count = 3;
+    // working comment
+    // let top = [21663922];
 
-    println!("Top {} stories:", count);
+    // working job
+    // let top = [21655200];
+
+    // breaking deleted
+    let top = [21654193];
+    let count = 1;
+
     print(&api, &top[..count]);
 }
